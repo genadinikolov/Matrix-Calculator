@@ -1,5 +1,6 @@
 #include<iostream>
 #include<iomanip>
+#include<fstream>
 
 using namespace std ;
 
@@ -29,12 +30,25 @@ void Print(int arr[][MAX_SIZE] , int n , int m){
   cout << endl;
 }
 
+int Collect(int arr[][MAX_SIZE] , int brr[][MAX_SIZE] , int n , int m ){
+  int crr[MAX_SIZE][MAX_SIZE] = {0};
+  for(int i = 0 ; i < n ; i++){
+    for(int j = 0 ; j < m ; j++){
+        crr[i][j] = arr[i][j] + brr[i][j];
+    }
+  }
+  cout << " Collection of the matrix is : "  << endl;
+  Print(crr , n , m);
+
+}
+
 int VariableMultiplication(int arr[][MAX_SIZE] , int n  , int m , int y){
    for(int i = 0 ; i < n ; i++){
      for( int j = 0 ; j < m ; j++){
         arr[i][j] *= y;
      }
    }
+   cout << " The multiplication with Y is  : " << endl ;
    Print(arr , n , m);
 }
 
@@ -50,6 +64,7 @@ int MatrixMultiplication(int arr[][MAX_SIZE] , int brr[][MAX_SIZE] , int n , int
           }
        }
      }
+     cout << " Matrix multiplication is : "  << endl;
      Print(crr , n , t );
 }
 
@@ -89,6 +104,7 @@ int Divide(int arr[][MAX_SIZE] , int n , int m , int k){
         arr[i][j] = arr[i][j] / k;
      }
    }
+   cout << " The dividing is : " << endl;
    Print(arr , n , m );
 }
 
@@ -102,6 +118,7 @@ void print(float arr[][MAX_SIZE] , int n){
 }
 
 void Transporation(float arr[][MAX_SIZE] , int n){
+cout << " Transponsed matrix is : " << endl;
   for(int i = 0 ; i < n ; i++){
     for(int j = 0 ; j < n ; j++){
          cout << arr[j][i] << " ";
@@ -111,6 +128,7 @@ void Transporation(float arr[][MAX_SIZE] , int n){
 }
 
 void IntegerTrans(int arr[][MAX_SIZE] , int n , int m){
+    cout << " Transporence: "<< endl;
     if(n < m){
         for(int i = 0 ; i < n ; i++){
             for(int j = 0 ; j < m ; j++){
@@ -159,6 +177,7 @@ void Adjustable(int arr[][MAX_SIZE] , int adj[][MAX_SIZE] , int n){
 }
 
 bool ReverseMatrix(int arr[][MAX_SIZE]  , float rev[][MAX_SIZE] , int n ){
+    cout << " the reverse matrix is : " << endl;
     int DetA = determinant( arr , n );
     if( DetA == 0){
         return false;
@@ -176,25 +195,29 @@ int main(){
     int n = 0  , m = 0 ;
     int arr[MAX_SIZE][MAX_SIZE] ;
     int brr[MAX_SIZE][MAX_SIZE] = {0} , k = 0  , t = 0;
-    cout << " The sizes of the rows : " << endl;
+    int result[MAX_SIZE][MAX_SIZE] = {0};
+   cout << " The sizes of the rows : " << endl;
     cin >> n ;
-    //cout << " The sizes of cows : " << endl;
+    cout << " The sizes of cows : " << endl;
     cin >> m ;
     Input(arr , n , m);
-    //VariableMultiplication(arr , n , m ,  2);
-   // Divide(arr , n , m , 2);
-   // cin >> k >> t ;
-   // if(m != k) return -1;
-   // Input(brr , k ,t);
-   // MatrixMultiplication(arr , brr , n , m , k , t , result);
-   /* if( n == m ){
+    cin >> k >> t ;
+    Input(brr , k ,t);
+    if(n == k && m == t){
+       Collect(arr , brr , n , m);
+    }
+   VariableMultiplication(arr , n , m ,  2);
+    Divide(arr , n , m , 2);
+    if(m != k) return -1;
+    MatrixMultiplication(arr , brr , n , m , k , t , result);
+    if( n == m ){
         cout << determinant(arr , n );
-    }*/
-  /* float used[MAX_SIZE][MAX_SIZE] = {0.0};
+    }
+    float used[MAX_SIZE][MAX_SIZE] = {0.0};
     ReverseMatrix(arr , used , n );
     print(used , n);
     cout << endl;
-    Transporation(used , n);*/
+    Transporation(used , n);
     cout << endl;
     IntegerTrans(arr , n , m );
 return 0 ;
