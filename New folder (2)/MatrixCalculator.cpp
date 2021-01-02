@@ -6,7 +6,28 @@ using namespace std ;
 
 const int MAX_SIZE= 200;
 
-void Input(int arr[][MAX_SIZE] , int n , int m){
+
+int My_strncmp(char str1[] , char str2[] ){
+    int i = 0 ;
+    bool flag = false;
+    while( str1[i] != '\0' || str2[i] !='\0'){
+        flag = false;
+        if(str1[i] == str2[i]){
+            flag = true;
+        }
+        if(flag == true){
+            i++;
+        }else {
+        return  -1;
+        }
+    }
+    if(flag == true ){
+        return 1;
+    }
+
+}
+
+void Input(double arr[][MAX_SIZE] , int n , int m){
     for(int i = 0 ; i < n ; i++){
         for(int j = 0 ; j < m ; j++){
             cin >> arr[i][j];
@@ -14,7 +35,7 @@ void Input(int arr[][MAX_SIZE] , int n , int m){
     }
 }
 
-void Print(int arr[][MAX_SIZE] , int n , int m){
+void Print(double arr[][MAX_SIZE] , int n , int m){
   for(int i = 0 ; i < n ; i++){
     for(int j = 0 ; j < m ; j++){
             if( j == 0 ){
@@ -27,38 +48,48 @@ void Print(int arr[][MAX_SIZE] , int n , int m){
     }
     cout << endl;
   }
-  cout << endl;
 }
 
-int Collect(int arr[][MAX_SIZE] , int brr[][MAX_SIZE] , int n , int m ){
-  int crr[MAX_SIZE][MAX_SIZE] = {0};
+int SumMatrix(double arr[][MAX_SIZE] , double brr[][MAX_SIZE] , int n , int m ){
+  double crr[MAX_SIZE][MAX_SIZE] = {0.0};
   for(int i = 0 ; i < n ; i++){
     for(int j = 0 ; j < m ; j++){
         crr[i][j] = arr[i][j] + brr[i][j];
     }
   }
-  cout << " Collection of the matrix is : "  << endl;
+  cout << " Sum of the matrix is : "  << endl;
   Print(crr , n , m);
 
 }
 
-int VariableMultiplication(int arr[][MAX_SIZE] , int n  , int m , int y){
+int Difference(double arr[][MAX_SIZE] , double brr[][MAX_SIZE] , int n , int m ){
+    double crr[MAX_SIZE][MAX_SIZE] = {0.0};
+    for(int i = 0 ; i < n ; i++){
+        for(int j = 0 ; j < m ; j++){
+            crr[i][j] = arr[i][j] - brr[i][j];
+        }
+    }
+    cout << " The difference of matrix is : "<<endl;
+    Print(crr , n , m);
+}
+
+int VariableMultiplication(double arr[][MAX_SIZE] , int n  , int m , double  y){
    for(int i = 0 ; i < n ; i++){
      for( int j = 0 ; j < m ; j++){
         arr[i][j] *= y;
      }
    }
-   cout << " The multiplication with Y is  : " << endl ;
-   Print(arr , n , m);
+   cout << " The multiplication with " << y << " is  : " << endl ;
+   Print (arr , n , m);
 }
 
-int MatrixMultiplication(int arr[][MAX_SIZE] , int brr[][MAX_SIZE] , int n , int m , int  k , int t  , int crr[][MAX_SIZE]){
+int MatrixMultiplication(double arr[][MAX_SIZE] , double brr[][MAX_SIZE] , int n , int m , int  k , int t  , double crr[][MAX_SIZE]){
     // n , m = matrix1;
     // k , t = matrix2;
-    int j = 0;
+    double j = 0.0;
     for(int i = 0 ; i < n ; i++){
        for(int s = 0 ; s < t ; s++){
-            crr[i][s] = 0;
+            crr[i][s] = 0.0;
           for(int j = 0 ; j < m ; j++){
             crr[i][s] += arr[i][j] * brr[j][s];
           }
@@ -68,7 +99,7 @@ int MatrixMultiplication(int arr[][MAX_SIZE] , int brr[][MAX_SIZE] , int n , int
      Print(crr , n , t );
 }
 
-void AdQuantity(int arr[][MAX_SIZE] , int used[][MAX_SIZE] , int p , int q , int n ){
+void AdQuantity(double arr[][MAX_SIZE] , double used[][MAX_SIZE] , int p , int q , int n ){
     int indexi = 0 , indexj = 0 ;
     for(int i = 0 ; i < n ; i++){
         for(int j = 0 ; j < n ; j++){
@@ -83,12 +114,12 @@ void AdQuantity(int arr[][MAX_SIZE] , int used[][MAX_SIZE] , int p , int q , int
     }
 }
 
-int determinant ( int arr[][MAX_SIZE] , int n ){
-   int Det = 0 ;
+double determinant ( double arr[][MAX_SIZE] , int n ){
+   double Det = 0.0;
     if(n == 1){
         return arr[0][0];
     }
-   int result[MAX_SIZE][MAX_SIZE];
+   double result[MAX_SIZE][MAX_SIZE];
    int sign = 1;
    for(int  k = 0 ; k < n ; k++){
      AdQuantity(arr , result , 0 , k , n);
@@ -98,17 +129,17 @@ int determinant ( int arr[][MAX_SIZE] , int n ){
    return Det;
 }
 
-int Divide(int arr[][MAX_SIZE] , int n , int m , int k){
+int Divide(double arr[][MAX_SIZE] , int n , int m , double scalar){
    for(int i = 0 ; i < n ; i++){
      for(int j = 0 ; j < m ; j++){
-        arr[i][j] = arr[i][j] / k;
+        arr[i][j] = arr[i][j] / scalar;
      }
    }
    cout << " The dividing is : " << endl;
    Print(arr , n , m );
 }
 
-void print(float arr[][MAX_SIZE] , int n){
+void print(double arr[][MAX_SIZE] , int n){
     for(int i = 0 ; i < n ; i++){
         for(int j = 0 ; j < n ; j++){
             cout << setw(15) << arr[i][j];
@@ -117,8 +148,8 @@ void print(float arr[][MAX_SIZE] , int n){
     }
 }
 
-void Transporation(float arr[][MAX_SIZE] , int n){
-cout << " Transponsed matrix is : " << endl;
+void TranspositionRevrse(double arr[][MAX_SIZE] , int n){
+cout << " Reverse matrix is : " << endl;
   for(int i = 0 ; i < n ; i++){
     for(int j = 0 ; j < n ; j++){
          cout << arr[j][i] << " ";
@@ -127,22 +158,14 @@ cout << " Transponsed matrix is : " << endl;
   }
 }
 
-void IntegerTrans(int arr[][MAX_SIZE] , int n , int m){
-    cout << " Transporence: "<< endl;
-    if(n < m){
+void TranspositionMatrix(double arr[][MAX_SIZE] , int n , int m){
+    cout << " Transposition : "<< endl;
+    if(n < m || n > m){
         for(int i = 0 ; i < n ; i++){
             for(int j = 0 ; j < m ; j++){
                 cout << arr[i][j] << " ";
             }
                 cout << endl;
-        }
-    }
-    else if( n > m){
-        for(int i = 0 ; i < n ; i++){
-            for(int j = 0 ; j < m ; j++){
-                cout << arr[i][j] << " ";
-            }
-            cout << endl;
         }
     }
     else if( n == m){
@@ -156,13 +179,13 @@ void IntegerTrans(int arr[][MAX_SIZE] , int n , int m){
 
 }
 
-void Adjustable(int arr[][MAX_SIZE] , int adj[][MAX_SIZE] , int n){
+void Adjustable(double arr[][MAX_SIZE] , double adj[][MAX_SIZE] , int n){
    if( n == 1){
     adj[0][0] == 1 ;
     return ;
    }
    int sign = 1 ;
-   int used[MAX_SIZE][MAX_SIZE];
+   double used[MAX_SIZE][MAX_SIZE];
    for(int i = 0 ; i < n ; i++){
         for(int j = 0 ; j < n ; j++){
             AdQuantity(arr , used , i , j , n);
@@ -176,35 +199,111 @@ void Adjustable(int arr[][MAX_SIZE] , int adj[][MAX_SIZE] , int n){
    }
 }
 
-bool ReverseMatrix(int arr[][MAX_SIZE]  , float rev[][MAX_SIZE] , int n ){
+bool ReverseMatrix(double arr[][MAX_SIZE]  , double rev[][MAX_SIZE] , int n ){
     cout << " the reverse matrix is : " << endl;
-    int DetA = determinant( arr , n );
+    double DetA = determinant( arr , n );
     if( DetA == 0){
         return false;
     }
-    int adj[MAX_SIZE][MAX_SIZE];
+    double adj[MAX_SIZE][MAX_SIZE];
     Adjustable( arr , adj , n);
     for(int i = 0 ; i < n ; i++){
         for(int j = 0 ; j < n ; j++){
-            rev[i][j] = adj[i][j] / float( DetA );
+            rev[i][j] = adj[i][j] / ( DetA );
         }
     }
 }
 
 int main(){
     int n = 0  , m = 0 ;
-    int arr[MAX_SIZE][MAX_SIZE] ;
+    char input[MAX_SIZE] = "0";
+    fstream file("Matrix.txt");
+    if(file.is_open()){
+        char func[MAX_SIZE] = "0";
+        while(file >> input){
+         cout << input ;
+         cout << endl;
+        }
+        do {
+        double arr[MAX_SIZE][MAX_SIZE] , brr[MAX_SIZE][MAX_SIZE] , result[MAX_SIZE][MAX_SIZE];
+        int n , m , n1 , m1 , scalar;
+        double used[MAX_SIZE][MAX_SIZE] = {0.0};
+       cout << endl <<  " Input the function which you want to see " <<endl;
+       cin >> func;
+       if(My_strncmp(func , "1.Multiplication") == 1){
+         cout << " Input the size of the matrix : " << endl;
+         cin >> n >> m;
+         cout << " Input the matrix : " << endl;
+         Input(arr , n , m);
+         cout << " Input the number for multiplication : " << endl;
+         cin >> scalar;
+         VariableMultiplication(arr , n , m , scalar);
+       }
+       if( My_strncmp(func , "2.MultiMatrix") == 1){
+        cout << " Input the size of first matrix : " << endl;
+        cin >> n >> m;
+        cout << " Input first matrix " << endl;
+        Input(arr , n , m);
+        cout << " Input size of second matrix " << endl;
+        cin >> n1 >> m1;
+        if( m == n1){
+            Input(brr , n1 , m1);
+            MatrixMultiplication(arr , brr , n , m , n1 , m1 , result);
+        }
+       }
+        if( My_strncmp(func , "3.Determinant") == 1){
+          cout << " Input the size of the matrix : " << endl;
+          cin >> n >> m;
+          cout << " Input the matrix : " << endl;
+          Input(arr , n , m );
+          if(n == m){
+            cout <<"The determinant of the matrix is : " << determinant(arr , n );
+          }
+       }
+       if( My_strncmp(func , "4.Dividing") == 1){
+          cout << " Input the size of the matrix : " << endl;
+          cin >> n >> m;
+          cout << " Input the number for dividing : " << endl;
+          cin >> scalar;
+          cout << " Input the matrix : " << endl;
+          Input( arr , n , m);
+          Divide(arr , n , m , scalar);
+       }
+      if( My_strncmp( func , "5.ReverseMatrix") == 1){
+        cout << " Input the size of the matrix : " << endl;
+        cin >> n >> m;
+        cout << " Input the matrix : " << endl;
+        Input(arr , n , m);
+        ReverseMatrix(arr , used , n);
+        print(used , n);
+      }
+      if(My_strncmp(func , "6.Transe") == 1){
+        cout << " Input the size of the matrix : " << endl;
+        cin >> n >> m;
+        cout << " Input the matrix : " << endl;
+        Input(arr , n , m);
+        Print(arr , n , m );
+        TranspositionMatrix(arr , n , m);
+      }
+        }while(func != "0");
+
+    file.close();
+    }
+    else{cout << " -1";}
+   /*
     int brr[MAX_SIZE][MAX_SIZE] = {0} , k = 0  , t = 0;
     int result[MAX_SIZE][MAX_SIZE] = {0};
-   cout << " The sizes of the rows : " << endl;
-    cin >> n ;
-    cout << " The sizes of cows : " << endl;
-    cin >> m ;
+    cout << " Input the size of the first matrix : " << endl;
+    cin >> n >> m ;
+    cout << " Input first matrix : "<< endl;
     Input(arr , n , m);
+    cout << " the size of the second matrix : " << endl;
     cin >> k >> t ;
+    cout << " Input the second matrix : "<<endl;
     Input(brr , k ,t);
     if(n == k && m == t){
        Collect(arr , brr , n , m);
+       Difference( arr , brr , n , m );
     }
    VariableMultiplication(arr , n , m ,  2);
     Divide(arr , n , m , 2);
@@ -219,7 +318,7 @@ int main(){
     cout << endl;
     Transporation(used , n);
     cout << endl;
-    IntegerTrans(arr , n , m );
+    IntegerTrans(arr , n , m );*/
 return 0 ;
 }
 /*
