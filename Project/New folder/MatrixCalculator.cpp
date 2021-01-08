@@ -4,7 +4,7 @@
 
 using namespace std ;
 
-const int MAX_SIZE= 254;
+const int MAX_SIZE= 100;
 
 int My_strncmp(char str1[] , char str2[] ){
     int i = 0 ;
@@ -34,30 +34,7 @@ void Input(double arr[][MAX_SIZE] , int n , int m){
     }
 }
 
-void IntInput( int arr[][MAX_SIZE] , int n) {
-    for(int i = 0; i < n ; i++){
-        for(int j = 0 ; j < n ; j++){
-            cin >> arr[i][j];
-       }
-    }
-}
-
-void IntPrint( int arr[][MAX_SIZE] , int n){
-    for(int i = 0 ; i < n ; i++){
-        for(int j = 0 ; j < n ; j++){
-            if(j == 0){
-                cout << "||";
-            }
-            cout << setw(10) << arr[i][j];
-            if( j == n - 1){
-                cout << "||";
-            }
-        }
-        cout << endl;
-    }
-}
-
-void FloatPrint(float arr[][MAX_SIZE] , int n , int m){
+void Print(double arr[][MAX_SIZE] , int n , int m){
   for(int i = 0 ; i < n ; i++){
     for(int j = 0 ; j < m ; j++){
             if( j == 0 ){
@@ -72,14 +49,22 @@ void FloatPrint(float arr[][MAX_SIZE] , int n , int m){
   }
 }
 
-void Print(double arr[][MAX_SIZE] , int n , int m){
-  for(int i = 0 ; i < n ; i++){
-    for(int j = 0 ; j < m ; j++){
+void IntegerInput( int arr[][MAX_SIZE] , int n ){
+    for(int i = 0 ; i < n ; i++){
+        for(int j = 0 ; j < n ; j++){
+            cin >> arr[i][j];
+        }
+    }
+}
+
+void IntegerPrint( int arr[][MAX_SIZE] , int n ){
+    for(int i = 0 ; i < n ; i++){
+    for(int j = 0 ; j < n ; j++){
             if( j == 0 ){
                 cout << "||";
             }
             cout << setw(10) << arr[i][j];
-            if( j == m - 1){
+            if( j == n - 1){
                cout << "||";
             }
     }
@@ -190,7 +175,7 @@ int VariableMultiplication(double arr[][MAX_SIZE] , int n  , int m , double scal
                 cout << "||";
                 for(int k = 0 ; k < m ; k++){
                     if( k == 0 && i > 0){
-                        cout <<"            ||";
+                        cout <<"              ||";
                     }
                     cout << setw(8) << arr[i][k] * scalar;
                     if( k == m - 1){
@@ -269,7 +254,7 @@ int Divide(double arr[][MAX_SIZE] , int n , int m , double scalar){
             cout << "||";
             for(int k = 0 ; k < m ; k++){
                 if( k == 0 && i > 0){
-                    cout << "           ||";
+                    cout << "             ||";
                 }
                 cout << setw(8) << arr[i][k] / scalar ;
                 if( k == m - 1 ){
@@ -349,7 +334,7 @@ void Adjustable(int arr[][MAX_SIZE] , int adj[][MAX_SIZE] , int n){
    }
 }
 
-bool ReverseMatrix(int  arr[][MAX_SIZE]  , float rev[][MAX_SIZE] , int n ){
+bool ReverseMatrix(int  arr[][MAX_SIZE]  , double rev[][MAX_SIZE] , int n ){
     int DetA = determinant(arr , n);
     if( DetA == 0){
         cout << " The is no inverse matrix : " << endl;
@@ -359,17 +344,17 @@ bool ReverseMatrix(int  arr[][MAX_SIZE]  , float rev[][MAX_SIZE] , int n ){
     Adjustable( arr , adj , n);
     for(int i = 0 ; i < n ; i++){
         for(int j = 0 ; j < n ; j++){
-            rev[i][j] = adj[i][j] / float(DetA);
+            rev[i][j] = adj[i][j] / double(DetA);
         }
     }
    return true;
 }
 
 int main(){
+
     char input[MAX_SIZE] = "0" , start[MAX_SIZE] = "0";
-    double arr[MAX_SIZE][MAX_SIZE] , brr[MAX_SIZE][MAX_SIZE] , result[MAX_SIZE][MAX_SIZE];
-    int quadratmatrix[MAX_SIZE][MAX_SIZE] , n , m , n1 , m1 , scalar;
-    float used[MAX_SIZE][MAX_SIZE] = {0.0};
+    double arr[MAX_SIZE][MAX_SIZE] , brr[MAX_SIZE][MAX_SIZE] , result[MAX_SIZE][MAX_SIZE] ;
+    int qmatrix[MAX_SIZE][MAX_SIZE] , n , m , n1 , m1 , scalar;
     cout << " Input 'main' or 'add' for open the files : " << endl;
    do{
         cin >> start;
@@ -388,7 +373,7 @@ int main(){
             do {
                 cout << endl <<  " Input a number for run the function " <<endl;
                 cin >> func;
-                if(My_strncmp (func , "0") == 1  || My_strncmp ( func , "-1") == 1){
+               if(My_strncmp (func , "0") == 1  || My_strncmp ( func , "-1") == 1){
                     return -1;
                 }
                if(My_strncmp(func , "1") == 1){
@@ -419,38 +404,39 @@ int main(){
                         MatrixMultiplication(arr , brr , n , m , n1 , m1 , result);
                     }
                }
-                if( My_strncmp(func , "3") == 1){
+               if( My_strncmp(func , "3") == 1){
                     cout << " Input only the rows (rows = cows) of the matrix : " << endl;
                     cin  >> n ;
                     cout << " Input the matrix : " << endl;
-                    IntInput(quadratmatrix, n);
-                    IntPrint(quadratmatrix , n );
-                    cout << endl << "DET A = " << determinant(quadratmatrix , n ) << endl ;
+                    IntegerInput(qmatrix , n);
+                    cout << endl << "DET A = " << determinant(qmatrix , n) << endl ;
                }
                if( My_strncmp(func , "4") == 1){
                     cout << " Input the rows of the matrix : " << endl;
                     cin >> n ;
                     cout << " Input the cows of the matrix  : " << endl;
                     cin >> m;
-                    cout << " Input the number for dividing : " << endl;
-                    cin >> scalar;
                     cout << " Input the matrix : " << endl;
                     Input( arr , n , m);
+                    cout << " Input the number for dividing : " << endl;
+                    cin >> scalar;
                     Divide(arr , n , m , scalar);
                }
-              if( My_strncmp( func , "5") == 1){
+               if( My_strncmp( func , "5") == 1){
                     cout << " Input only the rows (rows = cows) of the matrix : " << endl;
                     cin >> n ;
                     cout << " Input the matrix : " << endl;
-                    IntInput(quadratmatrix , n );
-                    if( ReverseMatrix(quadratmatrix , used , n) == true ) {
+                    IntegerInput(qmatrix, n);
+
+                    if( ReverseMatrix(qmatrix , result , n) == true ) {
+                            cout << "1" << endl;
                         cout << " Reverse matrix of  " << endl  ;
-                        IntPrint(quadratmatrix , n);
+                        IntegerPrint(qmatrix , n);
                         cout << " is : " << endl;
-                        FloatPrint(used , n , n);
+                        Print(result , n ,n);
                     }
-              }
-              if(My_strncmp(func , "6") == 1){
+                }
+                if(My_strncmp(func , "6") == 1){
                     cout << " Input the rows of the matrix : " << endl;
                     cin >> n ;
                     cout << " Input the cows of the matrix : " << endl;
@@ -460,8 +446,7 @@ int main(){
                     cout << " Main matrix is : " << endl;
                     Print(arr , n , m );
                     TranspositionMatrix(arr , n , m);
-              }
-
+                }
             }while(true);
         file.close();
         }
