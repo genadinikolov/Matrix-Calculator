@@ -5,59 +5,59 @@
 using namespace std ;
 
 // Constant for maximum elements in the matrix;
-const int MAX_SIZE= 100;
+const int MAX_SIZE = 100;
 
-// Function for string compare of two strings.
+// Function for comparing of two strings.
 int My_strncmp(char str1[] , char str2[] ){
 
 // variable for start index.
     int i = 0;
 
 // Declaration of flag.
-    bool flag = false;
+    bool compare = false;
 
 // Loop for comparing.
     while( str1[i] != '\0' || str2[i] !='\0'){
-        flag = false;
+         compare= false;
 
 //Checking each index.
         if(str1[i] == str2[i]){
 
 // converting flag to true if the indexes are equal.
-            flag = true;
+            compare = true;
         }
 // Increasing index if flag is true.
-        if(flag == true){
+        if(compare == true){
             i++;
         }else {
         return  -1;
         }
     }
-    if(flag == true ){
+    if(compare == true ){
         return 1;
     }
 
 }
 
 // Function for input an array from double date type.
-void Input(double arr[][MAX_SIZE] , int n , int m){
+void MatrixInput(double matrix[][MAX_SIZE] , int rows , int cows){
 
 // Loop for inputing an array.
-    for(int i = 0 ; i < n ; i++){
-        for(int j = 0 ; j < m ; j++){
+    for(int i = 0 ; i < rows ; i++){
+        for(int j = 0 ; j < cows ; j++){
 
 // Input the matrix.
-            cin >> arr[i][j];
+            cin >> matrix[i][j];
         }
     }
 }
 
 // Function for printing from double  date type.
-void Print(double arr[][MAX_SIZE] , int n , int m){
+void MatrixPrint(double matrix[][MAX_SIZE] , int rows , int cows){
 
 // Loop for printing the array.
-  for(int i = 0 ; i < n ; i++){
-    for(int j = 0 ; j < m ; j++){
+  for(int i = 0 ; i < rows ; i++){
+    for(int j = 0 ; j < cows ; j++){
 
 // Designing the table.
             if( j == 0 ){
@@ -67,10 +67,10 @@ void Print(double arr[][MAX_SIZE] , int n , int m){
             }
 
 // Print the matrix.
-            cout << setw(11) << arr[i][j];
+            cout << setw(11) << matrix[i][j];
 
 // Print '||' after the last column.
-            if( j == m - 1){
+            if( j == cows - 1){
                cout << "||";
             }
     }
@@ -81,24 +81,24 @@ void Print(double arr[][MAX_SIZE] , int n , int m){
 }
 
 // Function for input an array from integer date type.
-void IntegerInput( int arr[][MAX_SIZE] , int n ){
+void IntegerMatrixInput( int matrix[][MAX_SIZE] , int rows ){
 
 // Loop for inputing an array.
-    for(int i = 0 ; i < n ; i++){
-        for(int j = 0 ; j < n ; j++){
+    for(int i = 0 ; i < rows ; i++){
+        for(int j = 0 ; j < rows ; j++){
 
 // Input a quadrat matrix.
-            cin >> arr[i][j];
+            cin >> matrix[i][j];
         }
     }
 }
 
 // Function for printing an array from integer date type.
-void IntegerPrint( int arr[][MAX_SIZE] , int n ){
+void IntegerMatrixPrint( int matrix[][MAX_SIZE] , int rows ){
 
 // Loop for printing the matrix.
-    for(int i = 0 ; i < n ; i++){
-        for(int j = 0 ; j < n ; j++){
+    for(int i = 0 ; i < rows ; i++){
+        for(int j = 0 ; j < rows ; j++){
 
 // Print '||' before first column.
             if( j == 0 ){
@@ -106,10 +106,10 @@ void IntegerPrint( int arr[][MAX_SIZE] , int n ){
             }
 
 // Printing the array.
-            cout << setw(10) << arr[i][j];
+            cout << setw(10) << matrix[i][j];
 
 // Print '||' after the last column.
-            if( j == n - 1){
+            if( j == rows - 1){
                cout << "||";
             }
         }
@@ -120,14 +120,14 @@ void IntegerPrint( int arr[][MAX_SIZE] , int n ){
 }
 
 // Function for sum of two matrixs with equal sizes.
-int SumMatrix(double arr[][MAX_SIZE] , double brr[][MAX_SIZE] , int n , int m ){
+int SumMatrix(double FirstMatrix[][MAX_SIZE] , double SecondMatrix[][MAX_SIZE] , int rows , int cows ){
 
 // Printing this statement.
   cout << " Sum of the matrix is : "  << endl;
 
 // Loop for printing and sum of two matrix.
-  for(int i = 0 ; i < n ; i++){
-    for(int j = 0 ; j < m ; j++){
+  for(int i = 0 ; i < rows ; i++){
+    for(int j = 0 ; j < cows ; j++){
 
 // Print '||' before first column of the first matrix.
         if ( j == 0){
@@ -135,47 +135,47 @@ int SumMatrix(double arr[][MAX_SIZE] , double brr[][MAX_SIZE] , int n , int m ){
         }
 
 // Printing the elements from the first matrix.
-        cout <<setw(5) << arr[i][j];
+        cout <<setw(5) << FirstMatrix[i][j];
 
 // Print '||' after the last column of the first matrix and rows different form the middle.
-        if( j == m -1 && i != n / 2){
+        if( j == cows -1 && i != rows / 2){
                 cout << "||  ";
         }
 
 // Print '|| + ||' in the middle row and after the last column of the first matrix.
-        if( i == n / 2 && j == m -1){
+        if( i == rows / 2 && j == cows -1){
             cout << "|| + ||";
         }
 
 // Starting a loop for second matrix.
-        if(j == m - 1){
+        if(j == cows - 1){
 
 // Loop for printing the second matrix.
-            for(int k = 0 ; k < m ; k++){
+            for(int k = 0 ; k < cows ; k++){
 
 // Print '||' different from the middle row and before first elements.
-                if( k == 0 && i != n / 2){
+                if( k == 0 && i != rows / 2){
                         cout << " ||";
                 }
 
 // Printing the elements from the second matrix.
-                cout <<setw(5) << brr[i][k];
+                cout <<setw(5) << SecondMatrix[i][k];
 
 // Print '||' in the rows different form the middle and after the last column.
-                if( k == m - 1  && i != n / 2){
+                if( k == cows - 1  && i != rows / 2){
                         cout << "||  ";
                 }
 
 // Print '|| = ' in the middle row and after the last column of the second matrix.
-                if( i == n / 2 && k == m - 1){
+                if( i == rows / 2 && k == cows - 1){
                         cout << "|| =";
                 }
 
 // Start printing the sum.
-                if( k == m - 1 ){
+                if( k == cows - 1 ){
 
 // Loop for printing the sum.
-                    for(int t = 0 ; t < m ; t++){
+                    for(int t = 0 ; t < cows ; t++){
 
 // Print '||' before the first column of the third matrix.
                         if( t == 0){
@@ -183,10 +183,10 @@ int SumMatrix(double arr[][MAX_SIZE] , double brr[][MAX_SIZE] , int n , int m ){
                         }
 
 // Print the sum of two matrix.
-                        cout << setw(5) << arr[i][t] + brr[i][t];
+                        cout << setw(5) << FirstMatrix[i][t] + SecondMatrix[i][t];
 
 // Print '||' after the last column of the third matrix.
-                        if(t == m - 1){
+                        if(t == cows - 1){
                                 cout << "||";
                         }
                     }
@@ -282,14 +282,14 @@ int Difference(double arr[][MAX_SIZE] , double brr[][MAX_SIZE] , int n , int m )
 }
 
 // Function for multiplication with scalar.
-int VariableMultiplication(double arr[][MAX_SIZE] , int n  , int m , double scalar){
+int MatrixScalarMultiplication(double matrix[][MAX_SIZE] , int rows , int cows , double scalar){
 
 // Print this statement.
    cout << " The multiplication with " << scalar << " is : "<< endl;
 
 // Loop for printing the matrix.
-   for(int i = 0 ; i < n ; i++){
-        for(int j = 0 ; j < m ; j++){
+   for(int i = 0 ; i < rows ; i++){
+        for(int j = 0 ; j < cows ; j++){
 
 // Print '||' before the first column .
             if( j == 0 ){
@@ -297,19 +297,19 @@ int VariableMultiplication(double arr[][MAX_SIZE] , int n  , int m , double scal
             }
 
 // Print the elements form the matrix.
-            cout <<setw(6) << arr[i][j];
+            cout <<setw(6) << matrix[i][j];
 
 // Pint '|| * ||....' after the last column of the matrix and the start row.
-            if( j == m - 1 && i == 0 ){
+            if( j == cows - 1 && i == 0 ){
                 cout <<"||" << " * " << "|| " << scalar << " || " << " = ";
             }
 
 // Print '||' after the last column of the matrix and rows different from the 0.
-            if( j == m - 1 ){
+            if( j == cows - 1 ){
                 cout << "||";
 
 // Loop for printing the multiplication matrix.
-                for(int k = 0 ; k < m ; k++){
+                for(int k = 0 ; k < cows ; k++){
 
 // Print '||' in the first column and rows after 0.
                     if( k == 0 && i > 0){
@@ -317,10 +317,10 @@ int VariableMultiplication(double arr[][MAX_SIZE] , int n  , int m , double scal
                     }
 
 // Print the elements after multiplication.
-                    cout << setw(8) << arr[i][k] * scalar;
+                    cout << setw(8) << matrix[i][k] * scalar;
 
 // Print '||' after the last column of the multiplicated matrix.
-                    if( k == m - 1){
+                    if( k == cows - 1){
                         cout << "||";
                     }
                 }
@@ -334,51 +334,51 @@ int VariableMultiplication(double arr[][MAX_SIZE] , int n  , int m , double scal
 
 
 // Function for multiplication of two matrix.
-int MatrixMultiplication(double arr[][MAX_SIZE] , double brr[][MAX_SIZE] , int n , int m , int k, int t  , double crr[][MAX_SIZE]){
+int MatrixMultiplication(double FirstMatrix[][MAX_SIZE] , double SecondMatrix[][MAX_SIZE] , int frows , int fcows , int srows , int scows  , double result[][MAX_SIZE]){
 // Parameters n , m are for the first matrix.
 // Parameters  k , t re for the second matrix.
 
 // Loops for multiplication of the matrix.
-    for(int i = 0 ; i < n ; i++){
-       for(int s = 0 ; s < t ; s++){
+    for(int i = 0 ; i < frows ; i++){
+       for(int s = 0 ; s < scows ; s++){
 
 // Make the sum of elements equal to null each time.
-            crr[i][s] = 0.0;
+            result[i][s] = 0.0;
 
 // Loop for sum the elements and push them into third matrix..
-            for(int j = 0 ; j < m ; j++){
-                crr[i][s] += arr[i][j] * brr[j][s];
+            for(int j = 0 ; j < fcows ; j++){
+                result[i][s] += FirstMatrix[i][j] * SecondMatrix[j][s];
             }
         }
     }
 
 // Printing each matrix in new line.
      cout << " A = " << endl ;
-     Print(arr , n , m);
+     MatrixPrint(FirstMatrix , frows , fcows);
      cout << endl << " B = " << endl ;
-     Print(brr , k , t);
+     MatrixPrint(SecondMatrix , srows , scows);
      cout << " A * B = "  << endl;
-     Print(crr , n , t );
+     MatrixPrint(result , frows , scows );
 }
 
 // Function for make an adjustable quantities.
-void AdQuantity(int arr[][MAX_SIZE] , int used[][MAX_SIZE] , int p , int q , int n ){
+void AdjustableQuantity(int matrix[][MAX_SIZE] , int used[][MAX_SIZE] , int row , int cow , int matrixrows ){
 
 // Variables for index of the new matrix.
     int indexi = 0 , indexj = 0 ;
 
 // Loop for finding each adjustable quantities.
-    for(int i = 0 ; i < n ; i++){
-        for(int j = 0 ; j < n ; j++){
+    for(int i = 0 ; i < matrixrows ; i++){
+        for(int j = 0 ; j < matrixrows ; j++){
 
 // Check if row and colw are different from the 0 and the last.
-            if( i != p && j != q){
+            if( i != row && j != cow){
 
 // Take elements from the first matrix.
-                used[indexi][indexj++] = arr[i][j];
+                used[indexi][indexj++] = matrix[i][j];
 
 // Make e new row when we reach the last column of the matrix.
-                if(indexj == n - 1){
+                if(indexj == matrixrows - 1){
                     indexj = 0 ;
                     indexi++;
                 }
@@ -388,27 +388,27 @@ void AdQuantity(int arr[][MAX_SIZE] , int used[][MAX_SIZE] , int p , int q , int
 }
 
 // Recursive function for determinant of the quadrat matrix.
-int determinant( int arr[][MAX_SIZE] , int n ){
+int determinant( int matrix[][MAX_SIZE] , int rows ){
 
 // Declaration of the determinant.
     int Det ;
 
 // Bottom of the recursion and return the first elements from the matrix.
-    if(n == 1){
-        return arr[0][0];
+    if(rows == 1){
+        return matrix[0][0];
     }
 
 // variables used for find the determinant
    int result[MAX_SIZE][MAX_SIZE] , sign = 1;
 
 // Loop for finding the determinant.
-   for(int k = 0 ; k < n ; k++){
+   for(int k = 0 ; k < rows ; k++){
 
 // Make an adjustable quantities frm 0 row and each column.
-     AdQuantity(arr , result , 0 , k , n);
+     AdjustableQuantity(matrix , result , 0 , k , rows);
 
 // Sum of the determinant after adjustable quantity.
-     Det += sign * arr[0][k] * determinant(result , n - 1);
+     Det += sign * matrix[0][k] * determinant(result , rows - 1);
 
 // Swap the sign in front of the sum.
      sign = -sign;
@@ -419,14 +419,14 @@ int determinant( int arr[][MAX_SIZE] , int n ){
 }
 
 // Function for dividing matrix on number.
-int Divide(double arr[][MAX_SIZE] , int n , int m , double scalar){
+int ScalarDividing(double matrix[][MAX_SIZE] , int rows , int cows , double scalar){
 
 // Print this statement.
    cout << " The matrix after dividing is : " << endl;
 
 // Loop for printing the matrix.
-   for(int i = 0 ; i < n ; i++){
-     for(int j = 0 ; j < m ; j++){
+   for(int i = 0 ; i < rows ; i++){
+     for(int j = 0 ; j < cows ; j++){
 
 // Print '||' before the first column of first matrix.
         if( j == 0){
@@ -434,19 +434,19 @@ int Divide(double arr[][MAX_SIZE] , int n , int m , double scalar){
         }
 
 // Print the elements from the first matrix.
-        cout << setw(5) << arr[i][j];
+        cout << setw(5) << matrix[i][j];
 
 // Print '||' after the last column of the first matrix .
-        if( j == m - 1 && i == 0){
+        if( j == cows - 1 && i == 0){
             cout << "|| / || "<< scalar << " || = ";
         }
 
 // Print '||' after the last column and rows different from the middle.
-        if( j == m - 1 ){
+        if( j == cows - 1 ){
             cout << "||";
 
 // Loop for printing the dividing matrix.
-            for(int k = 0 ; k < m ; k++){
+            for(int k = 0 ; k < cows ; k++){
 
 // Print '||' before the first column of the matrix and rows different from 0.
                 if( k == 0 && i > 0){
@@ -454,10 +454,10 @@ int Divide(double arr[][MAX_SIZE] , int n , int m , double scalar){
                 }
 
 // Print elements after dividing.
-                cout << setw(8) << arr[i][k] / scalar ;
+                cout << setw(8) << matrix[i][k] / scalar ;
 
 // Print '||' after the last column of the divided matrix.
-                if( k == m - 1 ){
+                if( k == cows - 1 ){
                     cout << "||";
                 }
             }
@@ -470,17 +470,17 @@ int Divide(double arr[][MAX_SIZE] , int n , int m , double scalar){
 }
 
 // Function for transposition of matrix.
-void TranspositionMatrix(double arr[][MAX_SIZE] , int n , int m){
+void TranspositionMatrix(double matrix[][MAX_SIZE] , int rows , int cows){
 
 // Print this statement.
     cout << endl <<  " Transposition matrix is  : "<< endl;
 
 // First when rows are smaller than cows.
-    if(n < m ){
+    if(rows < cows ){
 
 // Loop for transposition.
-        for(int i = 0 ; i < m ; i++){
-            for(int j = 0 ; j < n ; j++){
+        for(int i = 0 ; i < cows ; i++){
+            for(int j = 0 ; j < rows ; j++){
 
 // Print '||' before the first column of the transposition matrix.
                 if(j == 0){
@@ -488,10 +488,10 @@ void TranspositionMatrix(double arr[][MAX_SIZE] , int n , int m){
                 }
 
 // Print the elements of new matrix.
-                cout << setw(5) << arr[j][i];
+                cout << setw(5) << matrix[j][i];
 
 // Print '||' after the last column of the transposition matrix.
-                if( j == n - 1){
+                if( j == rows - 1){
                     cout << "||";
                 }
             }
@@ -502,11 +502,11 @@ void TranspositionMatrix(double arr[][MAX_SIZE] , int n , int m){
     }
 
 // when rows are equal to cows.
-    else if( n == m){
+    else if( rows == cows){
 
 // Loop for transposition the matrix.
-        for(int i = 0 ; i < n ; i++){
-            for(int j = 0 ; j < n ; j++){
+        for(int i = 0 ; i < rows ; i++){
+            for(int j = 0 ; j < cows ; j++){
 
 // Print '||' before the first column of the new matrix.
                 if( j == 0){
@@ -514,10 +514,10 @@ void TranspositionMatrix(double arr[][MAX_SIZE] , int n , int m){
                 }
 
 // Print the elements from the new matrix.
-                cout <<setw(5) << arr[j][i];
+                cout <<setw(5) << matrix[j][i];
 
 // Print '||' after the last column of the matrix.
-                if( j == n - 1){
+                if( j == rows - 1){
                     cout << "||";
                 }
             }
@@ -528,11 +528,11 @@ void TranspositionMatrix(double arr[][MAX_SIZE] , int n , int m){
     }
 
 // When rows are bigger than cows.
-    else if( n > m){
+    else if( rows > cows){
 
 // Loop for transposition the matrix.
-        for(int j = 0 ; j < m ; j++){
-            for(int i = 0 ; i < n ; i++){
+        for(int j = 0 ; j < cows ; j++){
+            for(int i = 0 ; i < rows ; i++){
 
 // Print '||' before the first column of the new matrix.
                 if( i == 0){
@@ -540,10 +540,10 @@ void TranspositionMatrix(double arr[][MAX_SIZE] , int n , int m){
                 }
 
 // Printing the elements of the new matrix.
-                cout << setw(5) << arr[i][j];
+                cout << setw(5) << matrix[i][j];
 
 // Print '||' after the last column of the first matrix.
-                if( i == n - 1){
+                if( i == rows - 1){
                     cout << "||";
                 }
             }
@@ -555,11 +555,11 @@ void TranspositionMatrix(double arr[][MAX_SIZE] , int n , int m){
 }
 
 // Function for adjustable qantity matrix.
-void Adjustable(int arr[][MAX_SIZE] , int adj[][MAX_SIZE] , int n){
+void AdjustableQuantityMatrix(int matrix[][MAX_SIZE] , int result[][MAX_SIZE] , int rows){
 
 // Check if we have matrix 1X1.
-   if( n == 1){
-    adj[0][0] == 1 ;
+   if( rows == 1){
+    result[0][0] == 1 ;
     return ;
    }
 
@@ -567,11 +567,11 @@ void Adjustable(int arr[][MAX_SIZE] , int adj[][MAX_SIZE] , int n){
    int sign = 1 , used[MAX_SIZE][MAX_SIZE];
 
 // Loop for finding the adjustable quantity matrix.
-   for(int i = 0 ; i < n ; i++){
-        for(int j = 0 ; j < n ; j++){
+   for(int i = 0 ; i < rows ; i++){
+        for(int j = 0 ; j < rows ; j++){
 
 // First finding the adjustable quantity of each elements.
-            AdQuantity(arr , used , i , j , n);
+            AdjustableQuantity(matrix , used , i , j , rows);
 
 // Swapping the sign despite the sum of rows and cows.
             if( (i + j) % 2 == 0 ){
@@ -582,16 +582,16 @@ void Adjustable(int arr[][MAX_SIZE] , int adj[][MAX_SIZE] , int n){
 
 // Make a matrix with adjustable quantity elements.
 // Using the determinant for finding the elements.
-            adj[j][i] = ( sign )* ( determinant( used , n - 1 ) );
+            result[j][i] = ( sign )* ( determinant ( used , rows - 1 ) );
         }
    }
 }
 
 // Function for finding the reverse ( inverse ) of the matrix.
-bool ReverseMatrix(int  arr[][MAX_SIZE]  , double rev[][MAX_SIZE] , int n ){
+bool InverseMatrix(int matrix[][MAX_SIZE] , double inverse[][MAX_SIZE] , int rows ){
 
 // Variable for determinant.
-    int DetA = determinant(arr , n);
+    int DetA = determinant(matrix , rows);
 
 // Check is the determinant is equal to null.
     if( DetA == 0){
@@ -600,18 +600,18 @@ bool ReverseMatrix(int  arr[][MAX_SIZE]  , double rev[][MAX_SIZE] , int n ){
     }
 
 // array used for adjustable quantity matrix.
-    int adj[MAX_SIZE][MAX_SIZE];
+    int used[MAX_SIZE][MAX_SIZE];
 
 // Finding the adjustable quantity matrix.
-    Adjustable( arr , adj , n);
+    AdjustableQuantityMatrix( matrix , used, rows);
 
 // Loop for finding the reverse matrix.
-    for(int i = 0 ; i < n ; i++){
-        for(int j = 0 ; j < n ; j++){
+    for(int i = 0 ; i < rows ; i++){
+        for(int j = 0 ; j < rows ; j++){
 
 // Dividing adjustable quantity elements on determinant for
 // reach the elements of the inverse matrix.
-            rev[i][j] = adj[i][j] / double(DetA);
+            inverse[i][j] = used[i][j] / double(DetA);
         }
     }
 
@@ -623,16 +623,16 @@ bool ReverseMatrix(int  arr[][MAX_SIZE]  , double rev[][MAX_SIZE] , int n ){
 int main(){
 
 // Variables used for printing the text from the file and input the functions.
-    char input[MAX_SIZE] = "0" , start[MAX_SIZE] = "0";
+    char Text[MAX_SIZE] = "0" , OpenFile[MAX_SIZE] = "0";
 
 // Arrays used in different functions.
-    double arr[MAX_SIZE][MAX_SIZE] , brr[MAX_SIZE][MAX_SIZE] , result[MAX_SIZE][MAX_SIZE] ;
+    double FirstMatrix[MAX_SIZE][MAX_SIZE] , SecondMatrix[MAX_SIZE][MAX_SIZE] , ResultMatrix[MAX_SIZE][MAX_SIZE] ;
 
 // Variables used in different functions.
 // n , m - size of first matrix;
 // n1 , m1 - size of the second matrix.
 // scalar - number for multiplication or dividing.
-    int qmatrix[MAX_SIZE][MAX_SIZE] , n , m , n1 , m1 , scalar;
+    int qmatrix[MAX_SIZE][MAX_SIZE] , frows , fcows , srows , scows , scalar;
 
 // Print this statement.
     cout << " Input 'main' or 'add' for open the files : " << endl;
@@ -641,14 +641,14 @@ int main(){
    do{
 
 // Input the name of the file for its opening.
-        cin >> start;
-        if(My_strncmp(start , "main") == 1 || My_strncmp(start , "add") == 1){
+        cin >> OpenFile;
+        if(My_strncmp(OpenFile , "main") == 1 || My_strncmp(OpenFile, "add") == 1){
             break;
         }
    }while(true);
 
 // Enter here when we open main function file.
-    if(My_strncmp(start , "main") == 1){
+    if(My_strncmp(OpenFile , "main") == 1){
 
 // Opening of the main function file.
              fstream file("main_functions.txt");
@@ -660,8 +660,8 @@ int main(){
             char func[MAX_SIZE] = "1";
 
 // Printing the information of the file.
-            while(file.getline(input , 200 , '\n') ) {
-                cout << input ;
+            while(file.getline(Text , 200 , '\n') ) {
+                cout << Text ;
                 cout << endl;
             }
 
@@ -684,20 +684,20 @@ int main(){
 
 // Input the size of the matrix..
                      cout << " Input the rows of the matrix " << endl;
-                     cin >> n ;
+                     cin >> frows ;
                      cout << " Input the cows of the matrix " << endl;
-                     cin >> m;
+                     cin >> fcows;
 
 // Input the matrix.
                      cout << " Input the matrix : " << endl;
-                     Input(arr , n , m);
+                     MatrixInput(FirstMatrix , frows , fcows);
 
 // Input the number ( scalar )for multiplication..
                      cout << " Input the number for multiplication : " << endl;
                      cin >> scalar;
 
 // Printing the matrix after multiplication.
-                     VariableMultiplication(arr , n , m , scalar);
+                     MatrixScalarMultiplication(FirstMatrix , frows , fcows , scalar);
                }
 
 // Check if func is equal to 2.
@@ -705,29 +705,29 @@ int main(){
 
 // Input the size of the matrix.
                     cout << " Input the rows of first matrix : " << endl;
-                    cin >> n ;
+                    cin >> frows ;
                     cout << " Input the cows of the first matrix " << endl;
-                    cin >> m;
+                    cin >> fcows;
 
 // Input the matrix.
                     cout << " Input first matrix " << endl;
-                    Input(arr , n , m);
+                    MatrixInput(FirstMatrix , frows , fcows);
 
 // Input the size of the second matrix.
                     cout << " Input rows of second matrix " << endl;
-                    cin >> n1 ;
+                    cin >> srows ;
                     cout << " Input cows of second matrix " << endl;
-                    cin >> m1 ;
+                    cin >> scows ;
 
 // Check if the cows from the first are equal to the rows of second matrix.
-                    if( m == n1){
+                    if( fcows == scows){
 
 // Input the second matrix.
                         cout << " Input the second matrix : " << endl;
-                        Input(brr , n1 , m1);
+                        MatrixInput(SecondMatrix , srows , scows);
 
 // Print the multiplication matrix..
-                        MatrixMultiplication(arr , brr , n , m , n1 , m1 , result);
+                        MatrixMultiplication(FirstMatrix , SecondMatrix, frows , fcows , srows , scows , ResultMatrix);
                     }
                }
 
@@ -736,14 +736,14 @@ int main(){
 
 // Input the size of the matrix.
                     cout << " Input only the rows (rows = cows) of the matrix : " << endl;
-                    cin  >> n ;
+                    cin  >> frows ;
 
 // Input the quadrat matrix.
                     cout << " Input the matrix : " << endl;
-                    IntegerInput(qmatrix , n);
+                    IntegerMatrixInput(qmatrix , frows);
 
 // Printing the determinant.
-                    cout << endl << "DET A = " << determinant(qmatrix , n) << endl ;
+                    cout << endl << "DET A = " << determinant(qmatrix , frows) << endl ;
                }
 
 // Check if func is equal to 4.
@@ -751,20 +751,20 @@ int main(){
 
 // Input the size of the matrix.
                     cout << " Input the rows of the matrix : " << endl;
-                    cin >> n ;
+                    cin >> frows ;
                     cout << " Input the cows of the matrix  : " << endl;
-                    cin >> m;
+                    cin >> fcows ;
 
 // Input the matrix.
                     cout << " Input the matrix : " << endl;
-                    Input( arr , n , m);
+                    MatrixInput( FirstMatrix , frows , fcows);
 
 // Input the number ( scalar ) for dividing.
                     cout << " Input the number for dividing : " << endl;
                     cin >> scalar;
 
 // Print the result after dividing.
-                    Divide(arr , n , m , scalar);
+                    ScalarDividing(FirstMatrix , frows , fcows, scalar);
                }
 
 // Check if func is equal to 5.
@@ -772,22 +772,22 @@ int main(){
 
 // Input the size of the matrix.
                     cout << " Input only the rows (rows = cows) of the matrix : " << endl;
-                    cin >> n ;
+                    cin >> frows ;
 
 // Input the matrix.
                     cout << " Input the matrix : " << endl;
-                    IntegerInput(qmatrix, n);
+                    IntegerMatrixInput(qmatrix, frows);
 
 // Check if the result of function for reverse matrix is true.
-                    if( ReverseMatrix(qmatrix , result , n) == true ) {
+                    if( InverseMatrix(qmatrix , ResultMatrix , frows) == true ) {
 
 // Printing the first matrix.
                         cout << " Reverse matrix of  " << endl  ;
-                        IntegerPrint(qmatrix , n);
+                        IntegerMatrixPrint(qmatrix , frows);
                         cout << " is : " << endl;
 
 // Printing the reverse ( inverse ) matrix.
-                        Print(result , n ,n);
+                        MatrixPrint(ResultMatrix , frows , frows);
                     }
                 }
 
@@ -796,20 +796,20 @@ int main(){
 
 // Input the size of the matrix.
                     cout << " Input the rows of the matrix : " << endl;
-                    cin >> n ;
+                    cin >> frows ;
                     cout << " Input the cows of the matrix : " << endl;
-                    cin >> m;
+                    cin >> fcows;
 
 // Input the matrix.
                     cout << " Input the matrix : " << endl;
-                    Input(arr , n , m);
+                    MatrixInput(FirstMatrix , frows , fcows);
 
 // Print inputed matrix.
                     cout << " Main matrix is : " << endl;
-                    Print(arr , n , m );
+                    MatrixPrint(FirstMatrix , frows , fcows );
 
 // Print the transposition matrix.
-                    TranspositionMatrix(arr , n , m);
+                    TranspositionMatrix(FirstMatrix , frows , fcows);
                 }
 
 // Do this while you enter '0' or '-1'.
@@ -825,7 +825,7 @@ int main(){
         }
 
 // Check if you entered 'add' .
-    }else if(My_strncmp(start , "add") == 1){
+    }else if(My_strncmp(OpenFile , "add") == 1){
 
 // Variable used for printing the text form the file.
         char ainput[MAX_SIZE] = "0";
@@ -864,20 +864,20 @@ int main(){
 
 // Input the size of two matrix.
                     cout << " Input the rows of the matrixes : " << endl;
-                    cin >> n ;
+                    cin >> frows ;
                     cout << " Input the cows of the matrixes : " << endl;
-                    cin >> m;
+                    cin >> fcows ;
 
 // Input the first matrix.
                     cout << " Input first matrix : " << endl;
-                    Input(arr , n , m );
+                    MatrixInput(FirstMatrix , frows , fcows );
 
 // Input the second matrix.
                     cout << " Input second matrix : " << endl;
-                    Input(brr , n , m );
+                    MatrixInput(SecondMatrix , frows , fcows );
 
 // Print the result of sum.
-                    SumMatrix(arr , brr , n , m );
+                    SumMatrix(FirstMatrix , SecondMatrix , frows , fcows);
                 }
 
 // Check is afunc is equal to 2.
@@ -885,20 +885,20 @@ int main(){
 
 // Input the size of two matrix.
                     cout << " Input the rows of the matrix : " << endl;
-                    cin >> n ;
+                    cin >> frows ;
                     cout << " Input the cows of the matrix : " << endl;
-                    cin >> m;
+                    cin >> fcows;
 
 // Input the first matrix.
                     cout << " Input first matrix : " << endl;
-                    Input(arr , n , m);
+                    MatrixInput(FirstMatrix , frows , fcows);
 
 // Input the second matrix.
                     cout << " Input second matrix : " << endl;
-                    Input(brr , n , m);
+                    MatrixInput(SecondMatrix , frows , fcows);
 
 // Print the result of the difference.
-                    Difference(arr , brr , n , m );
+                    Difference(FirstMatrix , SecondMatrix , frows , fcows);
                 }
 
 // Do this until entering 0 or -1.
