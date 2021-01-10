@@ -720,7 +720,7 @@ int main(){
                     cin >> scows ;
 
 // Check if the cows from the first are equal to the rows of second matrix.
-                    if( fcows == scows){
+                    if( fcows == srows){
 
 // Input the second matrix.
                         cout << " Input the second matrix : " << endl;
